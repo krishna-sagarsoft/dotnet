@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    
+
+    <section id="weather">
+        <h1 class="weather">Climate</h1>
+        <div class="form-group">
+            <label for="name">Country</label>
+            <input type="text" name="name" id="Countryname" placeholder="Enter Country name">
+            <button onclick="weather()">Submit</button>
+        </div></section>
+            <script>
+                function weather() {
+                    var weather = new XMLHttpRequest();
+                    weather.onload = function(){}
+                    weather.open("GET", 'https://weatherapi-com.p.rapidapi.com/current.json?q=' + document.getElementById("Countryname").value);
+                    weather.setRequestHeader('X-RapidAPI-Host', 'weatherapi-com.p.rapidapi.com');
+                    weather.setRequestHeader('X-RapidAPI-Key', '0659fff0a7msh8e2877882317edep189e54jsnc0e72a08b0e8');
+                    weather.send();
+    
+                    var r = JSON.parse(weather.response);
+    
+                    var dis = "Current location: " + r.current_observation.display_location.full + "  <p>";
+                    var temp = r.current_observation.temperature_string + "  <p>";
+                    var wind = r.current_observation.wind_string + "  <p>";
+    
+                   
+                    }
+                
+
+        </script>
+
+
+
+</body>
+</html>
