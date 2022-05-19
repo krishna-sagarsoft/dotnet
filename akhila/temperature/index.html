@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+
+
+
+
+    <label for="weather">Choose a temperature:</label>
+
+<select name="dropdownUnits" id="dropdownUnits" onclick ="weather()">
+  <option value=" Fahrenheit"> Fahrenheit</option>
+  <option value="Celcius">Celcius</option>
+  
+  
+</select>
+
+
+
+    <section id="weather">
+        <h1 class="weather">Climate</h1>
+        <div class="form-group">
+            <label for="name">City</label>
+            <input type="text" name="name" id="cityname" placeholder="Enter city name">
+            <button onclick="weather()">Submit</button>
+
+
+            <p id="demo"></p>
+        </div>
+    </section>
+    <script>
+
+        function weather() {
+
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://weatherapi-com.p.rapidapi.com/current.json?q=" + document.getElementById("cityname").value);
+            request.setRequestHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com");
+            request.setRequestHeader("X-RapidAPI-Key", "42f39f8a13msh1e33573d4d2aa3ap1351cejsn77a34d4b1930");
+            request.onload = function () {
+                var obj = JSON.parse(this.response);
+
+
+
+
+                if (document.getElementById("dropdownUnits").value == "Celcius") {
+                    document.getElementById("demo").innerHTML=obj.current.temp_c + "c";
+                }
+
+
+               else{
+                document.getElementById("demo").innerHTML=obj.current.temp_f + "f";
+               }
+
+
+
+            }
+            request.send();
+
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>
