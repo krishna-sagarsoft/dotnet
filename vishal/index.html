@@ -1,2 +1,43 @@
 <html>
-</html>
+
+
+This is Test
+
+</html> <section>
+        <table>
+            <tr>
+                <td>Home</td>
+                <td>Services</td>
+                <td>Clients</td>
+                <td>ContactUs</td>
+                <td colspan="4"></td>
+            </tr>
+
+        </table>
+        <script>
+            var homeDiv = document.getElementById("dvHome");
+            var ContactUsDiv = document.getElementById("dvContactUs");
+            var ServicesDiv = document.getElmentById("dvServices");
+            var ClientsDiv = document.getElementById("dvOurClients");
+            hideALL();
+            homeDiv.style = "display:block";
+            function showerHidEDiv(navbar) {
+                hideALL();
+                switch (navbar) {
+                    case 'Home':
+                        HomeDiv.style = "display:block;";
+                        break;
+                    case 'Services':
+                        ServicesDiv.style = "display:block;";
+                        break;
+                    case 'Clients':
+                        ClientsDiv.style = "display:block;";
+                        break;
+                    case 'ContactUs':
+                        ContactUsDiv.style = "display:block";
+                        break
+                }
+            }
+
+
+        </script>
