@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset='utf-8'> 
+    <meta  content="text/html";>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title> Contact Form</title>
+</head>
+<body>
+    
+        <p id="demo"></p>
+    <div>
+
+    <h1>Contacts</h1>
+   <table id="table1">
+       <tr>
+        
+            <th> First Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
+            
+            <th> Last Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th> Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th> Phone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th> Country </th>
+            
+       </tr>
+      
+       <tr>
+        <td id="data1"></td>
+        <td id="data2"></td>
+        <td id="data3"></td>
+      
+        <td id="data4"></td>
+        <td id="data5"></td>
+      
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      
+      
+        <td></td>
+        <td></td>
+        
+      </tr>
+     
+   </table>
+   <tr>
+    <td><button onclick="loadData()">Add New</button></td>
+   
+    <td><button>Edit</button></td>
+    <td><button>Delete</button></td>
+</tr>
+</div>
+
+
+   <table id="table2">
+       <tr>
+           <td>First Name</td>
+           <td><input type="text"  id="txtFName" placeholder="enter first name"></td>
+       </tr>
+       <tr>
+        <td>Last Name</td>
+        <td><input type="text" id="txtLName"  placeholder="enter last name" ></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><input type="text" id="txtEmail"  placeholder="enter email "></td>
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <td><input type="text"  id="txtPhone"  placeholder="enter phone number"></td>
+    </tr>
+    <tr>
+        <td>Country</td>
+        <td><input type="text" id="txtCountry"  placeholder="enter Country"></td>
+    </tr>
+
+    <tr>
+        <td><button onclick="addContact()">Save</button></td>
+        <td><button>Cancel</button></td>
+        
+    </tr>
+   </table>
+
+<script>
+    function loadData() {
+
+var request = new XMLHttpRequest();
+request.open("GET", "https://localhost:7289/");
+
+request.onload = function () {
+    
+//    var obj=JSON.parse(this.response)
+//  document.getElementById("demo").innerHTML=obj.firstName;
+
+console.log(this.responseText)
+}
+request.send();
+
+}
+
+
+function addContact()
+{
+var contact={
+
+
+
+    firstName: document.getElementById("txtFName").value,
+    lastName: document.getElementById("txtLName").value,
+    email: document.getElementById("txtEmail").value,
+    phone: document.getElementById("txtPhone").value,
+    country: document.getElementById("txtCountry").value
+
+}
+var request = new XMLHttpRequest();
+request.open("POST", "https://localhost:7289/");
+request.setRequestHeader("Content-type", " application/json");
+
+
+request.onload = function () {
+    var obj = JSON.parse(this.responseText);
+    document.getElementById("data1").innerHTML= obj.firstName ;
+    document.getElementById("data2").innerHTML= obj.lastName ;
+    document.getElementById("data3").innerHTML= obj.email ;
+    document.getElementById("data4").innerHTML= obj.phone ;
+    document.getElementById("data5").innerHTML= obj.country ;
+
+
+}
+request.send(JSON.stringify(contact));
+
+}
+</script>
+
+</body>
+</html>
